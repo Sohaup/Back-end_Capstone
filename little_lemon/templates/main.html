@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Little Lemon</title>
+        <link rel='stylesheet' href="{% static 'styles/style.css' %}"/> 
+    </head>
+    <body>
+        {% include "logo.html" %}    
+        {% include "nav.html" %}    
+        <form method='POST'>
+            {% csrf_token %}
+            <h2>Make a Reservation</h2>
+            {{form}}
+            <input type='submit' value='reserve'/>
+        </form>
+        <section>
+            <h3>Reservation For 2024</h3>
+            {% for result in data %}
+            <p>{{result.name}} : <span style='color:red;'>{{result.time}} PM</span></p>            
+            {% endfor %}
+        </section>
+        <script src="{% static 'reacts/react.js' %}"></script>
+    </body>
+</html>
